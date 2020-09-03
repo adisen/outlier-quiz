@@ -45,7 +45,7 @@ function App() {
           style={{
             width: `${((questionNum + 1) / numberofQuestions) * 100}%`,
           }}
-          id='progress__bar--inner'
+          className='progress__bar--inner'
         ></div>
       </div>
 
@@ -68,37 +68,48 @@ function App() {
         <div>
           <div>
             <p>
-              <span>{`Score: ${(score / numberofQuestions) * 100}%`}</span>
+              <span>{`Score: ${(score / (questionNum + 1)) * 100}%`}</span>
               <span style={{ float: "right" }}>{`Max Score: ${
-                (score / numberofQuestions) * 100 +
-                ((numberofQuestions - questionNum) / numberofQuestions) * 100
+                ((score + (numberofQuestions - questionNum)) /
+                  numberofQuestions) *
+                100
               }%`}</span>
             </p>
 
             <p style={{ float: "right" }}></p>
           </div>
 
-          <div className='progress__bar--outer'>
+          <div className='score__tracker--outer'>
+            {/* Lowest score possible */}
             <div
               style={{
                 width: `${(score / numberofQuestions) * 100}%`,
                 background: "#000",
-                position: "absolute",
-                top: 0,
-                left: 0,
                 zIndex: 90,
               }}
-              id='progress__bar--inner'
+              className='score__tracker--inner'
             ></div>
+            {/* Current score  */}
             <div
               style={{
-                width: `${(questionNum / numberofQuestions) * 100}%`,
-                background: "#a9aaa9",
-                position: "absolute",
-                top: 0,
-                left: 0,
+                width: `${(score / (questionNum + 1)) * 100}%`,
+                background: "#A0A0A0",
+                zIndex: 70,
               }}
-              id='progress__bar--inner'
+              className='score__tracker--inner'
+            ></div>
+            {/* Highest score possible */}
+            <div
+              style={{
+                width: `${
+                  ((score + (numberofQuestions - questionNum)) /
+                    numberofQuestions) *
+                  100
+                }%`,
+                background: "#D2D2D2",
+                zIndex: 50,
+              }}
+              className='score__tracker--inner'
             ></div>
           </div>
         </div>

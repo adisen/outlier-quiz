@@ -12,10 +12,10 @@ function QuestionCard({
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const answers = [
+  const answers = shuffle([
     ...currentQuestion.incorrect_answers,
     currentQuestion.correct_answer,
-  ];
+  ]);
 
   const checkAnswer = e => {
     let decodedAnswer = decodeURIComponent(currentQuestion.correct_answer);
@@ -52,7 +52,7 @@ function QuestionCard({
       <div>
         <h2>{decodeURIComponent(currentQuestion.question)}</h2>
         <div id='answers__container'>
-          {shuffle(answers).map(answer => {
+          {answers.map(answer => {
             return (
               <button
                 key={answer}

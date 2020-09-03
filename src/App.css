@@ -14,15 +14,23 @@ button {
   margin: 0 auto;
 }
 
-.progress__bar--outer {
+.progress__bar--outer,
+.score__tracker--outer {
   height: 40px;
   background: #e0e0de;
   position: relative;
 }
 
-#progress__bar--inner {
+.progress__bar--inner {
   height: 100%;
   background: #a9aaa9;
+}
+
+.score__tracker--inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
 }
 
 #answers__container {
