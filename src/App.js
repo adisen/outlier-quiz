@@ -16,6 +16,10 @@ function App() {
 
   const numberofQuestions = questions.length;
 
+  const shuffle = array => {
+    return [...array].sort(() => Math.random() - 0.5);
+  };
+
   const nextQuestion = () => {
     let nextquestionNum = questionNum + 1;
     if (nextquestionNum < numberofQuestions) {
@@ -52,7 +56,13 @@ function App() {
       <div className='container'>
         {/* Question Card */}
         <QuestionCard
-          currentQuestion={currentQuestion}
+          currentQuestion={{
+            ...currentQuestion,
+            answers: shuffle([
+              ...currentQuestion.incorrect_answers,
+              currentQuestion.correct_answer,
+            ]),
+          }}
           numberofQuestions={numberofQuestions}
           questionNum={questionNum}
           updateScore={updateScore}

@@ -1,21 +1,12 @@
 import React from "react";
 
-function QuestionCard({
-  currentQuestion,
-  numberofQuestions,
-  questionNum,
-  updateScore,
-}) {
-  console.log(currentQuestion);
-
-  const shuffle = array => {
-    return array.sort(() => Math.random() - 0.5);
-  };
-
-  const answers = shuffle([
-    ...currentQuestion.incorrect_answers,
-    currentQuestion.correct_answer,
-  ]);
+function QuestionCard(props) {
+  const {
+    currentQuestion,
+    numberofQuestions,
+    questionNum,
+    updateScore,
+  } = props;
 
   const checkAnswer = e => {
     let decodedAnswer = decodeURIComponent(currentQuestion.correct_answer);
@@ -52,7 +43,7 @@ function QuestionCard({
       <div>
         <h2>{decodeURIComponent(currentQuestion.question)}</h2>
         <div id='answers__container'>
-          {answers.map(answer => {
+          {currentQuestion.answers.map(answer => {
             return (
               <button
                 key={answer}
